@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+        <title>Component 2023 SAS</title>
+      
+        <!-- Bootstrap -->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link href="css/custom.css" rel="stylesheet">
+      
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+        <div class="container">
+            <h1 class="text-center mb-4">Aplicativo</h1>
+            <form>
+            <div class="form-group">
+                <label for="valorCompra">Valor de compra:</label>
+                <input type="number" class="form-control" id="valorCompra" required>
+            </div>
+            <div class="form-group">
+                <label for="utilidad">Porcentaje de utilidad o ganancia:</label>
+                <input type="number" class="form-control" id="utilidad" required>
+            </div>
+            <div class="form-group">
+                <label for="iva">Porcentaje de impuesto IVA:</label>
+                <input type="number" class="form-control" id="iva" required>
+            </div>
+            <div class="text-center">
+                <button type="button" class="btn btn-primary" id="calcular">Calcular</button>
+                <button type="button" class="btn btn-secondary" id="borrar">Borrar</button>
+            </div>
+            <div class="form-group mt-4">
+                <label for="valorVenta">Valor de venta:</label>
+                <input type="number" class="form-control" id="valorVenta" readonly>
+            </div>
+            <div class="form-group">
+                <label for="ganancia">Ganancia:</label>
+                <input type="number" class="form-control" id="ganancia" readonly>
+            </div>
+            <div class="form-group">
+                <label for="valorIVA">IVA:</label>
+                <input type="number" class="form-control" id="valorIVA" readonly>
+            </div>
+            </form>
+        </div>
+  
+            <script>
+
+                document.getElementById("calcular").addEventListener("click", function() {
+                var valorCompra = document.getElementById("valorCompra").value;
+                var utilidad = document.getElementById("utilidad").value;
+                var iva = document.getElementById("iva").value;
+
+                // Validamos que los campos sean numéricos
+                if (isNaN(valorCompra) || isNaN(utilidad) || isNaN(iva)) {
+                    alert("Por favor ingrese valores numéricos.");
+                    return;
+                }
+
+                // Calculamos los valores de venta, ganancia e IVA
+                
+                var ganancia = valorCompra * (parseFloat(utilidad) / 100);
+                var valorIVA = valorCompra * (parseFloat(iva) / 100);
+                var valorVenta = parseFloat(valorCompra) +parseFloat(valorIVA)+ parseFloat(ganancia);
+
+                // Mostramos los valores en los campos correspondientes
+                document.getElementById("valorVenta").value = valorVenta.toFixed(2);
+                document.getElementById("ganancia").value = ganancia.toFixed(2);
+                document.getElementById("valorIVA").value = valorIVA.toFixed(2);
+                });
+
+                document.getElementById("borrar").addEventListener("click", function() {
+
+                // Mostramos los valores en los campos correspondientes
+                document.getElementById("valorCompra").value = 0;
+                document.getElementById("utilidad").value = 0;
+                document.getElementById("iva").value = 0;
+                });
+
+            </script>
+
+       <!-- Sección Pie de Página -->
+        <footer class="footer-basic-centered">
+            <p class="footer-company-motto">Component 2023 SAS</p>
+            <p class="footer-derechos">Todos los Derechos e Reservados &copy; 2023</p>
+        </footer><!-- Fin Sección Pie de Página -->
+
+
+        <!-- Librerías y Archivos JS-->
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+        <!-- Bootstrap Latest compiled and minified JavaScript -->
+        <script src="js/bootstrap.min.js"></script>       
+    </body>
+</html>
+  
